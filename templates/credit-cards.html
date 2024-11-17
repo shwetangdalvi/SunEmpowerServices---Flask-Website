@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Cards - Sun Empower Solutions</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Navbar styling */
+        .navbar {
+            background-color: #000;
+            padding: 1rem 2rem;
+        }
+        .navbar-brand {
+            color: #ff0000 !important;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .navbar-nav .nav-link {
+            color: #fff !important;
+            margin-right: 1rem;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #ff0000 !important;
+        }
+        .nav-item.active .nav-link {
+            color: #ff0000 !important;
+        }
+        .btn-signin {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-signin:hover {
+            background-color: #cc0000;
+        }
+        .hero-section {
+            background: url('{{ url_for('static', filename='images/credit-card-hero.jpg') }}') no-repeat center center;
+            background-size: cover;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+            position: relative;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .product-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .product-card h5 {
+            color: #ff0000;
+        }
+        .btn-apply {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-apply:hover {
+            background-color: #cc0000;
+        }
+        .benefits-section {
+            background-color: #f8f9fa;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 2px solid #ddd;
+        }
+        .benefits-section h3 {
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .benefits-section p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        .interest-rate-section {
+            background-color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 2px solid #ddd;
+        }
+        .interest-rate-section h3 {
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .interest-rate-section p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .interest-rate-highlight {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #ff0000;
+        }
+         /* Footer styling */
+         .footer {
+            background-color: #333;
+            color: #f5f5f5;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+        .footer h6 {
+            font-size: 1rem;
+            margin-top: 10px;
+            color: #ff0000;
+        }
+        .footer p {
+            color: #ddd;
+        }
+        .footer-link {
+            color: #ff0000;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .footer-link:hover {
+            color: #cc0000;
+            text-decoration: underline;
+        }
+        .footer-divider {
+            border-top: 1px solid #555;
+        }
+        .social-icon {
+            color: #ddd;
+            transition: color 0.3s ease;
+        }
+        .social-icon:hover {
+            color: #ff0000;
+        }
+        .footer-copy {
+            color: #bbb;
+        }
+        .footer-copy,
+        .footer-link.small {
+            font-size: 0.875rem;
+        }
+        .cta-section {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #f8f9fa;
+            border-top: 2px solid #ddd;
+        }
+        .cta-section h3 {
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .cta-section p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .btn-assessment {
+            background-color: #ff0000;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-assessment:hover {
+            background-color: #cc0000;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" href="#">Sun Empower Solutions</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('sme_loans') }}">SME Loans</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('auto_loans') }}">Auto Loans</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('education_loans') }}">Education Loans</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('credit_cards') }}">Credit Cards</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
+                </li>
+            </ul>
+            <a href="{{ url_for('signin') }}" class="btn btn-signin ml-lg-3">Sign In</a>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Credit Cards</h1>
+            <p>Find the perfect card for your financial goals and lifestyle.</p>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Choose the Right Credit Card for You</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="{{ url_for('static', filename='images/card1.jpg') }}" class="img-fluid mb-3" alt="Card 1">
+                    <h5>Premium Rewards Card</h5>
+                    <p>Earn 3x points on dining and travel purchases. No annual fee for the first year.</p>
+                    <button class="btn btn-apply">Apply Now</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="{{ url_for('static', filename='images/card2.jpg') }}" class="img-fluid mb-3" alt="Card 2">
+                    <h5>Cashback Card</h5>
+                    <p>Get 5% cashback on groceries, fuel, and dining. Perfect for everyday spending.</p>
+                    <button class="btn btn-apply">Apply Now</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="{{ url_for('static', filename='images/card3.jpg') }}" class="img-fluid mb-3" alt="Card 3">
+                    <h5>Travel Rewards Card</h5>
+                    <p>Enjoy travel perks like lounge access and no foreign transaction fees.</p>
+                    <button class="btn btn-apply">Apply Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="interest-rate-section">
+        <h3>Average Credit Card Interest Rates</h3>
+        <p>Credit card interest rates vary based on the card type and your creditworthiness. At Sun Empower Solutions:</p>
+        <p class="interest-rate-highlight">Average APR: 19.99% for purchases</p>
+        <p class="interest-rate-highlight">Balance Transfer APR: 17.99%</p>
+        <p>We also offer promotional 0% APR for up to 12 months on balance transfers and purchases on select cards.</p>
+    </div>
+
+    <div class="benefits-section">
+        <h3>Why Choose Sun Empower Credit Cards?</h3>
+        <p>✔ Competitive interest rates</p>
+        <p>✔ Flexible payment options</p>
+        <p>✔ Round-the-clock customer support</p>
+        <p>✔ Comprehensive fraud protection</p>
+    </div>
+
+    <!-- <div class="cta-section">
+        <h3>Still have questions?</h3>
+        <p>Contact us for personalized recommendations or assistance with your application.</p>
+        <a href="{{ url_for('contact') }}" class="btn btn-assessment">Contact Us</a>
+    </div> -->
+
+    <div class="cta-section">
+        <h3>Still have questions?</h3>
+        <p class="mb-4">
+            Answer a few questions, and we’ll recommend products that might fit your needs.
+        </p>
+        <a href="#" class="btn btn-assessment">Start Assessment</a>
+    </div>
+
+    <footer class="footer py-5">
+        <div class="container">
+            <div class="row text-center text-md-left">
+                <!-- Help Center -->
+                <div class="col-md-4 mb-4">
+                    <i class="fas fa-question-circle fa-lg mb-2"></i>
+                    <h6 class="font-weight-bold">Have a question?</h6>
+                    <p>We have an answer.</p>
+                    <a href="#" class="footer-link">Help Centre</a>
+                </div>
+                <!-- Phone Number -->
+                <div class="col-md-4 mb-4">
+                    <i class="fas fa-phone fa-lg mb-2"></i>
+                    <h6 class="font-weight-bold">Call Sun Empower Solutions</h6>
+                    <p>1-800-123-4567</p>
+                    <a href="#" class="footer-link">More phone numbers</a>
+                </div>
+                <!-- Get Advice -->
+                <div class="col-md-4 mb-4">
+                    <i class="fas fa-comments fa-lg mb-2"></i>
+                    <h6 class="font-weight-bold">Get advice</h6>
+                    <p>Meet with an advisor.</p>
+                    <a href="#" class="footer-link">Book an appointment</a>
+                </div>
+            </div>
+
+            <hr class="footer-divider my-4">
+
+            <div class="row text-center">
+                <!-- Social Media Icons -->
+                <div class="col">
+                    <a href="#" class="social-icon mx-2"><i class="fab fa-facebook fa-lg"></i></a>
+                    <a href="#" class="social-icon mx-2"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a href="#" class="social-icon mx-2"><i class="fab fa-youtube fa-lg"></i></a>
+                    <a href="#" class="social-icon mx-2"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="#" class="social-icon mx-2"><i class="fab fa-instagram fa-lg"></i></a>
+                </div>
+            </div>
+
+            <hr class="footer-divider my-4">
+
+            <div class="row text-center">
+                <div class="col">
+                    <p class="footer-copy mb-0">&copy; 2024 Sun Empower Solutions. All rights reserved.</p>
+                    <a href="#" class="footer-link small">Terms and Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

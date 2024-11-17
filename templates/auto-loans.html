@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Loans - Sun Empower Solutions</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Navbar styling */
+        .navbar {
+            background-color: #000;
+            padding: 1rem 2rem;
+        }
+        .navbar-brand {
+            color: #ff0000 !important;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .navbar-nav .nav-link {
+            color: #fff !important;
+            margin-right: 1rem;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #ff0000 !important;
+        }
+        .nav-item.active .nav-link {
+            color: #ff0000 !important;
+        }
+        .btn-signin {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-signin:hover {
+            background-color: #cc0000;
+        }
+        .hero-section {
+            background: url('{{ url_for('static', filename='images/auto-loans-hero.jpg') }}') no-repeat center center;
+            background-size: cover;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+            position: relative;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .feature-section {
+            background-color: #f8f9fa;
+            padding: 40px 20px;
+        }
+        .feature-section h3 {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .feature-section p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+        }
+        .benefits-list li {
+            margin-bottom: 10px;
+            font-size: 1rem;
+            color: #555;
+        }
+        .benefits-list li::before {
+            content: "✔";
+            color: #ff0000;
+            margin-right: 10px;
+        }
+        .cta-section {
+            background-color: #000;
+            color: #fff;
+            padding: 30px;
+            text-align: center;
+        }
+        .cta-section a {
+            background-color: #ff0000;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .cta-section a:hover {
+            background-color: #cc0000;
+        }
+         /* Footer styling */
+         .footer {
+            background-color: #333;
+            color: #f5f5f5;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+        .footer h6 {
+            font-size: 1rem;
+            margin-top: 10px;
+            color: #ff0000;
+        }
+        .footer p {
+            color: #ddd;
+        }
+        .footer-link {
+            color: #ff0000;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .footer-link:hover {
+            color: #cc0000;
+            text-decoration: underline;
+        }
+        .footer-divider {
+            border-top: 1px solid #555;
+        }
+        .social-icon {
+            color: #ddd;
+            transition: color 0.3s ease;
+        }
+        .social-icon:hover {
+            color: #ff0000;
+        }
+        .footer-copy {
+            color: #bbb;
+        }
+        .footer-copy,
+        .footer-link.small {
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" href="#">Sun Empower Solutions</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ url_for('auto_loans') }}">Auto Loans</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('education_loans') }}">Education Loans</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('credit_cards') }}">Credit Cards</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
+                </li>
+            </ul>
+            <a href="{{ url_for('signin') }}" class="btn btn-signin ml-lg-3">Sign In</a>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Auto Loans</h1>
+            <p>Get behind the wheel with financing options tailored for you.</p>
+        </div>
+    </div>
+
+    <div class="container feature-section">
+        <h3>Why Choose Sun Empower Auto Loans?</h3>
+        <ul class="benefits-list">
+            <li>Competitive interest rates starting at 3.5% APR</li>
+            <li>Flexible repayment terms up to 72 months</li>
+            <li>Pre-approval options for better financial planning</li>
+            <li>Zero down payment options available on select loans</li>
+            <li>Exclusive benefits for existing Sun Empower customers</li>
+        </ul>
+    </div>
+
+    <div class="cta-section">
+        <h3>Ready to finance your dream vehicle?</h3>
+        <p>Explore your options and apply today!</p>
+        <a href="#">Start Application</a>
+    </div>
+
+    <footer class="footer py-5">
+        <div class="container">
+            <div class="row text-center text-md-left">
+                <!-- Help Center -->
+                <div class="col-md-4 mb-4">
+                    <i class="fas fa-question-circle fa-lg mb-2"></i>
+                    <h6 class="font-weight-bold">Have a question?</h6>
+                    <p>We have an answer.</p>
+                    <a href="#" class="footer-link">Help Centre</a>
+                </div>
+                <!-- Phone Number -->
+                <div class="col-md-4 mb-4">
+                    <i class="fas fa-phone fa-lg mb-2"></i>
+                    <h6 class="font-weight-bold">Call Sun Empower Solutions</h6>
+                    <p>1-800-123-4567</p>
+                    <a href="#" class="footer-link">More phone numbers</a>
+                </div>
+                <!-- Get Advice -->
+                <div class="col-md-4 mb-4">
+                    <i class="fas fa-comments fa-lg mb-2"></i>
+                    <h6 class="font-weight-bold">Get advice</h6>
+                    <p>Meet with an advisor.</p>
+                    <a href="#" class="footer-link">Book an appointment</a>
+                </div>
+            </div>
+
+            <hr class="footer-divider my-4">
+
+            <div class="row text-center">
+                <!-- Social Media Icons -->
+                <div class="col">
+                    <a href="#" class="social-icon mx-2"><i class="fab fa-facebook fa-lg"></i></a>
+                    <a href="#" class="social-icon mx-2"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a href="#" class="social-icon mx-2"><i class="fab fa-youtube fa-lg"></i></a>
+                    <a href="#" class="social-icon mx-2"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="#" class="social-icon mx-2"><i class="fab fa-instagram fa-lg"></i></a>
+                </div>
+            </div>
+
+            <hr class="footer-divider my-4">
+
+            <div class="row text-center">
+                <div class="col">
+                    <p class="footer-copy mb-0">&copy; 2024 Sun Empower Solutions. All rights reserved.</p>
+                    <a href="#" class="footer-link small">Terms and Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
