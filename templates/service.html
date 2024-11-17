@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact Guild - Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+        }
+        .navbar {
+            background-color: #000;
+        }
+        .navbar-brand, .nav-link {
+            color: #fff !important;
+        }
+        .nav-link.active {
+            color: #ff0000 !important;
+        }
+        .hero-section {
+            background: url('https://unsplash.com/photos/6VhPY27jdps/download?force=true') no-repeat center center;
+            background-size: cover;
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        .btn-primary {
+            background-color: #ff0000;
+            border-color: #ff0000;
+        }
+        .btn-primary:hover {
+            background-color: #cc0000;
+            border-color: #cc0000;
+        }
+        .card {
+            background-color: #1a1a1a;
+            border: none;
+        }
+        .card-title {
+            color: #ff0000;
+        }
+        .testimonial {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        .footer {
+            background-color: #000;
+            padding: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" href="#">Impact Guild</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ url_for('home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('service', service_name='sme-loans') }}">SME Loans</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('service', service_name='auto-loans') }}">Auto Loans</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('service', service_name='education-loans') }}">Education Loans</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('service', service_name='credit-cards') }}">Credit Cards</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content text-white">
+            <h1 class="display-4">Welcome to Impact Guild</h1>
+            <p class="lead">Your trusted partner in financial solutions.</p>
+            <a href="#services" class="btn btn-primary btn-lg">Explore Our Services</a>
+        </div>
+    </div>
+
+    <div class="container mt-5" id="services">
+        <h2 class="text-center mb-4">Our Services</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card mb-4">
+                    <img src="https://unsplash.com/photos/3WgG8wlGfTA/download?force=true" class="card-img-top" alt="SME Loans">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">SME Loans</h5>
+                        <p class="card-text">Empowering small and medium enterprises with tailored financial solutions.</p>
+                        <a href="{{ url_for('service', service_name='sme-loans') }}" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card mb-4">
+                    <img src="https://unsplash.com/photos/7KLa-xLbSXA/download?force=true" class="card-img-top" alt="Auto Loans">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Auto Loans</h5>
+                        <p class="card-text">Flexible financing options to get you on the road.</p>
