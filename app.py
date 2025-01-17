@@ -6,7 +6,7 @@ import os
 
 
 app = Flask(__name__)
-app.secret_key = '2p5cWsuoo3fWNyXOcwBQQnQuGC9_3Lkk2VKoMRJY1v6iwXU8Y'
+app.secret_key = ''
 run_with_ngrok(app)
 
 # Home Page
