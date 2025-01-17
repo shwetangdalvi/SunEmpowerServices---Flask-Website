@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Sun Empower Solutions{% endblock %}
+
+{% block content %}
+<div class="container dashboard-container">
+    <h1 class="text-center mb-5">Dynamic Dashboard - Sun Empower Solutions</h1>
+
+    <!-- Chart 1: Total Loan Amount by Region -->
+    <div class="chart-card">
+        <h3 class="text-center">Total Loan Amount by Region</h3>
+        <canvas id="chart1"></canvas>
+    </div>
+
+    <!-- Chart 2: Total Loan Amount by Loan Type -->
+    <div class="chart-card">
+        <h3 class="text-center">Total Loan Amount by Loan Type</h3>
+        <canvas id="chart2"></canvas>
+    </div>
+
+    <!-- Chart 3: Payment Frequency Distribution -->
+    <div class="chart-card">
+        <h3 class="text-center">Payment Frequency Distribution</h3>
+        <canvas id="chart3"></canvas>
+    </div>
+
+    <!-- Chart 4: Top 5 Cities by Total Loan Amount -->
+    <div class="chart-card">
+        <h3 class="text-center">Top 5 Cities by Total Loan Amount</h3>
+        <canvas id="chart4"></canvas>
+    </div>
+
+    <!-- Back Button -->
+    <div class="text-center mt-5">
+        <a href="{{ url_for('home') }}" class="back-button">Back to Website</a>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // Fetch Data Dynamically
+    async function fetchData() {
+        const response = await fetch('/api/chart-data');
+        const data = await response.json();
+        return data;
+    }
+
+    // Initialize Charts
+    async function initializeCharts() {
+        const data = await fetchData();
+
+        // Chart 1: Total Loan Amount by Region
+        const ctx1 = document.getElementById('chart1').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: data.region_data.labels,
+                datasets: [{
+                    label: 'Loan Amount (in billions)',
+                    data: data.region_data.values,
+                    backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56'],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                },
+                scales: {
+                    y: { beginAtZero: true },
+                }
+            }
+        });
+
+        // Chart 2: Total Loan Amount by Loan Type
+        const ctx2 = document.getElementById('chart2').getContext('2d');
+        new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: data.loan_type_data.labels,
+                datasets: [{
+                    data: data.loan_type_data.values,
+                    backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56'],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'bottom' },
+                }
+            }
+        });
+
+        // Chart 3: Payment Frequency Distribution
+        const ctx3 = document.getElementById('chart3').getContext('2d');
+        new Chart(ctx3, {
+            type: 'line',
+            data: {
+                labels: data.payment_frequency_data.labels,
+                datasets: [{
+                    label: 'Number of Accounts',
+                    data: data.payment_frequency_data.values,
+                    borderColor: '#36a2eb',
+                    tension: 0.4,
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                },
+                scales: {
+                    y: { beginAtZero: true },
+                }
+            }
+        });
+
+        // Chart 4: Top 5 Cities by Total Loan Amount
+        const ctx4 = document.getElementById('chart4').getContext('2d');
+        new Chart(ctx4, {
+            type: 'horizontalBar',
+            data: {
+                labels: data.top_cities_data.labels,
+                datasets: [{
+                    label: 'Loan Amount (in billions)',
+                    data: data.top_cities_data.values,
+                    backgroundColor: '#ff6384',
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                },
+                scales: {
+                    x: { beginAtZero: true },
+                }
+            }
+        });
+    }
+
+    // Initialize the Dashboard
+    initializeCharts();
+</script>
+{% endblock %}

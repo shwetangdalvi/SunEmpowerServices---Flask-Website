@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Sun Empower Solutions{% endblock %}
+
+{% block content %}
+<div class="container-fluid dashboard-container py-4">
+    <h1 class="text-center mb-4">Sun Empower Solutions Dashboard</h1>
+
+    <!-- Summary Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card bg-dark text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Total Loan Amount</h5>
+                    <p class="card-text" id="total-loan-amount">$0</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-danger text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Total Borrowers</h5>
+                    <p class="card-text" id="total-borrowers">0</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-dark text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Revenue Generated</h5>
+                    <p class="card-text" id="revenue-generated">$0</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-danger text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Total Branches</h5>
+                    <p class="card-text" id="total-branches">0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Graphs Section -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Total Loan Amount by Region</h5>
+                    <canvas id="region-chart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Total Loan Amount by Loan Type</h5>
+                    <canvas id="loan-type-chart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Business Insights</h5>
+                    <canvas id="business-insights-chart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-6">
+        <!-- Business Insights Graph -->
+        <!-- <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Business Insights</h5>
+                    <canvas id="business-insights-chart"></canvas>
+                </div>
+            </div>
+        </div> -->
+        <!-- Top Regions by Borrowers -->
+        <!-- <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Top Regions by Borrowers</h5>
+                    <canvas id="top-regions-chart"></canvas>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    
+
+    <!-- Data Table
+    <div class="mt-5">
+        <h5 class="text-center mb-4">Loan Details by Branch</h5>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Branch Name</th>
+                        <th>Loan Type</th>
+                        <th>Amount (in $)</th>
+                        <th>Borrowers</th>
+                        <th>Region</th>
+                    </tr>
+                </thead>
+                <tbody id="loan-details-table">
+                    <!-- Dynamic Rows -->
+                </tbody>
+            </table>
+        </div>
+    </div> -->
+
+    <!-- Back to Website Button
+    <div class="text-center mt-5">
+        <a href="{{ url_for('home') }}" class="btn btn-danger">Back to Website</a>
+    </div> -->
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // Fetch Data Dynamically
+    async function fetchDashboardData() {
+        const response = await fetch('/api/dashboard-data');
+        return await response.json();
+    }
+
+    // Populate Dashboard
+    async function populateDashboard() {
+        const data = await fetchDashboardData();
+
+        // Update Summary Cards
+        document.getElementById('total-loan-amount').innerText = `$${data.summary.totalLoanAmount}B`;
+        document.getElementById('total-borrowers').innerText = data.summary.totalBorrowers;
+        document.getElementById('revenue-generated').innerText = `$${data.summary.revenueGenerated}B`;
+        document.getElementById('total-branches').innerText = data.summary.totalBranches;
+
+        // Populate Charts
+        new Chart(document.getElementById('region-chart'), {
+            type: 'bar',
+            data: {
+                labels: data.charts.region.labels,
+                datasets: [{
+                    label: 'Loan Amount (in $B)',
+                    data: data.charts.region.values,
+                    backgroundColor: '#ff0000',
+                }],
+            },
+        });
+
+        new Chart(document.getElementById('loan-type-chart'), {
+            type: 'pie',
+            data: {
+                labels: data.charts.loanType.labels,
+                datasets: [{
+                    data: data.charts.loanType.values,
+                    backgroundColor: ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56'],
+                }],
+            },
+        });
+
+
+        // Business Insights Graph
+        new Chart(document.getElementById('business-insights-chart'), {
+            type: 'line',
+            data: {
+                labels: data.charts.businessInsights.labels, // e.g., "Q1, Q2, Q3, Q4"
+                datasets: [{
+                    label: 'Revenue Growth (in $Billions)',
+                    data: data.charts.businessInsights.values, // Revenue growth
+                    backgroundColor: '#ff0000',
+                }],
+            },
+        });
+
+        // Top Regions by Borrowers
+        new Chart(document.getElementById('top-regions-chart'), {
+            type: 'horizontalBar',
+            data: {
+                labels: data.charts.topRegions.labels,
+                datasets: [{
+                    label: 'Borrowers (in thousands)',
+                    data: data.charts.topRegions.values,
+                    backgroundColor: '#36a2eb',
+                }],
+            },
+        });
+
+        // Populate Table
+        const tableBody = document.getElementById('loan-details-table');
+        data.table.forEach(row => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${row.branchName}</td><td>${row.loanType}</td><td>$${row.amount}</td><td>${row.borrowers}</td><td>${row.region}</td>`;
+            tableBody.appendChild(tr);
+        });
+    }
+
+    // Initialize Dashboard
+    populateDashboard();
+</script>
+
+<style>
+      body {
+            padding-top: 70px; /* Adjust this value as needed */
+        }
+</style>
+{% endblock %}

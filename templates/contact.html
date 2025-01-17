@@ -8,12 +8,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Sun Empower Solutions</a>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-        </ul>
-    </nav>
+    {% extends "base.html" %}
+
+    {% block title %}Home - Sun Empower Solutions{% endblock %}
+
+    {% block content %}
     <div class="container mt-5">
         <h1>Contact Us</h1>
         <form>
@@ -32,5 +31,36 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
+    <style>
+        body {
+            padding-top: 70px; /* Adjust this value as needed */
+        }
+        /* Add spacing and customizations to the table */
+        .table {
+            font-size: 14px;
+            border: 1px solid #ddd;
+        }
+        .table th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            text-align: center;
+        }
+        .table td, .table th {
+            padding: 10px;
+            text-align: left;
+            vertical-align: middle;
+        }
+        .table-hover tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+        .btn-danger {
+            background-color: #ff0000;
+            border: none;
+        }
+        .btn-danger:hover {
+            background-color: #cc0000;
+        }
+    </style>
+    {% endblock %}
 </body>
 </html>

@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}About Us - Sun Empower Solutions{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content text-center text-white">
+        <h1 class="display-4 font-weight-bold">About Us</h1>
+        <p class="lead">Empowering Canadian businesses and individuals with innovative financial solutions.</p>
+    </div>
+</div>
+
+<div class="container my-5">
+    <!-- About the Company Section -->
+    <section class="mb-5 text-center">
+        <h2 class="font-weight-bold mb-4">Who We Are</h2>
+        <p class="lead text-muted">
+            At Sun Empower Solutions, we are committed to bridging the gap between financial needs and achievable solutions. 
+            From SME loans to credit cards and education financing, we strive to empower individuals and businesses to achieve their dreams.
+        </p>
+    </section>
+
+    <!-- Mission, Vision, and Values Section -->
+    <section class="mb-5">
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="p-4 shadow-sm bg-light">
+                    <h3 class="font-weight-bold text-primary">Our Mission</h3>
+                    <p class="text-muted">To simplify financial solutions and empower customers to achieve their ambitions with trust and ease.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-4 shadow-sm bg-light">
+                    <h3 class="font-weight-bold text-primary">Our Vision</h3>
+                    <p class="text-muted">To be Canada's most trusted financial partner, delivering innovative and customer-centric solutions.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-4 shadow-sm bg-light">
+                    <h3 class="font-weight-bold text-primary">Our Values</h3>
+                    <ul class="list-unstyled text-muted">
+                        <li>✔ Customer First</li>
+                        <li>✔ Integrity and Transparency</li>
+                        <li>✔ Innovation and Excellence</li>
+                        <li>✔ Community Impact</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="mb-5 text-center">
+        <h2 class="font-weight-bold mb-4">Our Story</h2>
+        <p class="lead text-muted">
+            Sun Empower Solutions began with a mission to make financial services more accessible and inclusive for everyone. Today, we are proud to serve thousands 
+            of Canadians, helping them achieve their goals through tailored solutions that address their unique needs.
+        </p>
+    </section>
+
+    <!-- Meet the Team Section -->
+    <section class="mb-5">
+        <h2 class="font-weight-bold text-center mb-4">Meet Our Team</h2>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm">
+                    <img src="{{ url_for('static', filename='images/team1.jpg') }}" alt="Jane Doe" class="card-img-top rounded-circle mx-auto mt-3" style="width: 150px; height: 150px;">
+                    <div class="card-body">
+                        <h5 class="card-title font-weight-bold">Jane Doe</h5>
+                        <p class="card-text text-muted">CEO</p>
+                        <p class="card-text">With 20+ years of industry experience, Jane leads Sun Empower Solutions with a vision for innovation and excellence.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm">
+                    <img src="{{ url_for('static', filename='images/team2.jpg') }}" alt="John Smith" class="card-img-top rounded-circle mx-auto mt-3" style="width: 150px; height: 150px;">
+                    <div class="card-body">
+                        <h5 class="card-title font-weight-bold">John Smith</h5>
+                        <p class="card-text text-muted">Chief Financial Officer</p>
+                        <p class="card-text">John specializes in strategic planning and financial optimization, ensuring the company's growth and stability.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm">
+                    <img src="{{ url_for('static', filename='images/team3.jpg') }}" alt="Emily Brown" class="card-img-top rounded-circle mx-auto mt-3" style="width: 150px; height: 150px;">
+                    <div class="card-body">
+                        <h5 class="card-title font-weight-bold">Emily Brown</h5>
+                        <p class="card-text text-muted">Head of Customer Success</p>
+                        <p class="card-text">Emily ensures that every customer has a seamless experience, building trust and long-term relationships.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta-section py-5 bg-light text-center">
+        <h3 class="font-weight-bold">Ready to Empower Your Future?</h3>
+        <p class="text-muted mb-4">Join thousands of satisfied customers and take the next step with Sun Empower Solutions.</p>
+        <a href="{{ url_for('contact') }}" class="btn btn-danger btn-lg">Contact Us</a>
+    </section>
+</div>
+{% endblock %}
