@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Feasibility Study - Sun Empower Solutions{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center mb-4">Feasibility Study</h1>
+    <p class="text-center text-muted">
+        Explore the Feasibility Study, including financial projections, marketing strategies, and cost analysis.
+    </p>
+
+    <!-- Download Button -->
+    <div class="text-center mb-4">
+        <a href="{{ url_for('static', filename='files/feasibility_study.xlsx') }}" class="btn btn-danger btn-lg">
+            <i class="fas fa-download"></i> Download Full Feasibility Study
+        </a>
+    </div>
+
+    <!-- Feasibility Table -->
+    <div class="table-responsive">
+        <h3 class="text-center mb-3">Key Feasibility Data</h3>
+        <table class="table table-bordered table-hover table-striped">
+            {{ sheet_data['Feasibility'] | safe }}
+        </table>
+    </div>
+</div>
+
+<style>
+    body {
+        padding-top: 70px; /* Adjust this value as needed */
+    }
+    /* Add spacing and customizations to the table */
+    .table {
+        font-size: 14px;
+        border: 1px solid #ddd;
+    }
+    .table th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+        text-align: center;
+    }
+    .table td, .table th {
+        padding: 10px;
+        text-align: left;
+        vertical-align: middle;
+    }
+    .table-hover tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+    .btn-danger {
+        background-color: #ff0000;
+        border: none;
+    }
+    .btn-danger:hover {
+        background-color: #cc0000;
+    }
+</style>
+{% endblock %}

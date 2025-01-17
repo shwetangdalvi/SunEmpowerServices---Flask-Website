@@ -6,43 +6,11 @@
     <title>Education Loans - Sun Empower Solutions</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        /* Navbar styling */
-        .navbar {
-            background-color: #000;
-            padding: 1rem 2rem;
-        }
-        .navbar-brand {
-            color: #ff0000 !important;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        .navbar-nav .nav-link {
-            color: #fff !important;
-            margin-right: 1rem;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-        }
-        .navbar-nav .nav-link:hover {
-            color: #ff0000 !important;
-        }
-        .nav-item.active .nav-link {
-            color: #ff0000 !important;
-        }
-        .btn-signin {
-            background-color: #ff0000;
-            color: #fff;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        .btn-signin:hover {
-            background-color: #cc0000;
-        }
+        /* Hero Section Styling */
         .hero-section {
             background: url('{{ url_for('static', filename='images/education-loans-hero.jpg') }}') no-repeat center center;
             background-size: cover;
-            height: 300px;
+            height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -62,26 +30,27 @@
             position: relative;
             z-index: 2;
         }
+        /* Feature Section Styling */
         .feature-section {
             background-color: #f8f9fa;
-            padding: 40px 20px;
+            padding: 50px 20px;
         }
         .feature-section h3 {
             font-weight: bold;
             color: #333;
             margin-bottom: 20px;
         }
-        .feature-section p {
-            font-size: 1rem;
-            margin-bottom: 15px;
+        .feature-section img {
+            border-radius: 10px;
+            max-width: 100%;
         }
         .benefits-list {
             list-style: none;
             padding: 0;
         }
         .benefits-list li {
-            margin-bottom: 10px;
-            font-size: 1rem;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
             color: #555;
         }
         .benefits-list li::before {
@@ -89,10 +58,31 @@
             color: #ff0000;
             margin-right: 10px;
         }
+        /* Additional Benefits Section */
+        .benefits-section {
+            padding: 50px 20px;
+            background-color: #fff;
+        }
+        .benefits-section h3 {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        /* FAQ Section */
+        .faq-section {
+            padding: 50px 20px;
+            background-color: #f8f9fa;
+        }
+        .faq-section h3 {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        /* Call to Action Section */
         .cta-section {
             background-color: #000;
             color: #fff;
-            padding: 30px;
+            padding: 50px 20px;
             text-align: center;
         }
         .cta-section a {
@@ -105,152 +95,101 @@
         .cta-section a:hover {
             background-color: #cc0000;
         }
-         /* Footer styling */
-         .footer {
-            background-color: #333;
-            color: #f5f5f5;
-            padding-top: 40px;
-            padding-bottom: 40px;
-        }
-        .footer h6 {
-            font-size: 1rem;
-            margin-top: 10px;
-            color: #ff0000;
-        }
-        .footer p {
-            color: #ddd;
-        }
-        .footer-link {
-            color: #ff0000;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .footer-link:hover {
-            color: #cc0000;
-            text-decoration: underline;
-        }
-        .footer-divider {
-            border-top: 1px solid #555;
-        }
-        .social-icon {
-            color: #ddd;
-            transition: color 0.3s ease;
-        }
-        .social-icon:hover {
-            color: #ff0000;
-        }
-        .footer-copy {
-            color: #bbb;
-        }
-        .footer-copy,
-        .footer-link.small {
-            font-size: 0.875rem;
-        }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <a class="navbar-brand" href="#">Sun Empower Solutions</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('home') }}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('auto_loans') }}">Auto Loans</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{ url_for('education_loans') }}">Education Loans</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('credit_cards') }}">Credit Cards</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
-                </li>
-            </ul>
-            <a href="{{ url_for('signin') }}" class="btn btn-signin ml-lg-3">Sign In</a>
-        </div>
-    </nav>
+    {% extends "base.html" %}
 
+    {% block title %}Education Loans - Sun Empower Solutions{% endblock %}
+
+    {% block content %}
     <div class="hero-section">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>Education Loans</h1>
-            <p>Invest in your future with flexible education loan options.</p>
+            <h1 class="display-4 font-weight-bold">Education Loans</h1>
+            <p class="lead">Empowering your education with accessible financing options.</p>
         </div>
     </div>
 
     <div class="container feature-section">
-        <h3>Why Choose Sun Empower Education Loans?</h3>
-        <ul class="benefits-list">
-            <li>Low interest rates starting at 4.5% APR</li>
-            <li>Flexible repayment terms up to 10 years</li>
-            <li>Grace periods during your studies</li>
-            <li>Quick and hassle-free approval process</li>
-            <li>Coverage for tuition, books, and living expenses</li>
-        </ul>
+        <h3 class="text-center">Why Choose Sun Empower Education Loans?</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    Our education loans are tailored to help you achieve your academic dreams. Whether it's tuition fees, books, or living expenses, 
+                    we have flexible and affordable solutions to support your journey.
+                </p>
+                <ul class="benefits-list">
+                    <li>Low interest rates starting at 4.5% APR</li>
+                    <li>Flexible repayment terms of up to 10 years</li>
+                    <li>Grace periods during your studies</li>
+                    <li>Quick and hassle-free approval process</li>
+                    <li>Coverage for tuition, books, and living expenses</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <img src="{{ url_for('static', filename='images/education-loan-benefits.jpg') }}" alt="Education Benefits">
+            </div>
+        </div>
     </div>
 
-    <div class="cta-section">
-        <h3>Ready to invest in your education?</h3>
-        <p>Apply today and unlock your potential!</p>
-        <a href="#">Start Application</a>
+    <div class="benefits-section">
+        <h3 class="text-center">Additional Benefits</h3>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <h4>Grace Period</h4>
+                <p>Start repaying only after you graduate, giving you financial flexibility.</p>
+            </div>
+            <div class="col-md-4">
+                <h4>Flexible Repayment Options</h4>
+                <p>Choose a repayment plan that fits your future financial capacity.</p>
+            </div>
+            <div class="col-md-4">
+                <h4>Dedicated Support</h4>
+                <p>Our team is here to guide you at every step of your education financing journey.</p>
+            </div>
+        </div>
     </div>
 
-    <footer class="footer py-5">
-        <div class="container">
-            <div class="row text-center text-md-left">
-                <!-- Help Center -->
-                <div class="col-md-4 mb-4">
-                    <i class="fas fa-question-circle fa-lg mb-2"></i>
-                    <h6 class="font-weight-bold">Have a question?</h6>
-                    <p>We have an answer.</p>
-                    <a href="#" class="footer-link">Help Centre</a>
+    <div class="faq-section">
+        <h3 class="text-center">Frequently Asked Questions</h3>
+        <div class="accordion" id="faqAccordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            What documents are required for an education loan?
+                        </button>
+                    </h5>
                 </div>
-                <!-- Phone Number -->
-                <div class="col-md-4 mb-4">
-                    <i class="fas fa-phone fa-lg mb-2"></i>
-                    <h6 class="font-weight-bold">Call Sun Empower Solutions</h6>
-                    <p>1-800-123-4567</p>
-                    <a href="#" class="footer-link">More phone numbers</a>
-                </div>
-                <!-- Get Advice -->
-                <div class="col-md-4 mb-4">
-                    <i class="fas fa-comments fa-lg mb-2"></i>
-                    <h6 class="font-weight-bold">Get advice</h6>
-                    <p>Meet with an advisor.</p>
-                    <a href="#" class="footer-link">Book an appointment</a>
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#faqAccordion">
+                    <div class="card-body">
+                        You'll need proof of enrollment, a valid ID, proof of income or co-signer information, and a detailed cost of education.
+                    </div>
                 </div>
             </div>
-
-            <hr class="footer-divider my-4">
-
-            <div class="row text-center">
-                <!-- Social Media Icons -->
-                <div class="col">
-                    <a href="#" class="social-icon mx-2"><i class="fab fa-facebook fa-lg"></i></a>
-                    <a href="#" class="social-icon mx-2"><i class="fab fa-twitter fa-lg"></i></a>
-                    <a href="#" class="social-icon mx-2"><i class="fab fa-youtube fa-lg"></i></a>
-                    <a href="#" class="social-icon mx-2"><i class="fab fa-linkedin fa-lg"></i></a>
-                    <a href="#" class="social-icon mx-2"><i class="fab fa-instagram fa-lg"></i></a>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Can I apply for an education loan without a co-signer?
+                        </button>
+                    </h5>
                 </div>
-            </div>
-
-            <hr class="footer-divider my-4">
-
-            <div class="row text-center">
-                <div class="col">
-                    <p class="footer-copy mb-0">&copy; 2024 Sun Empower Solutions. All rights reserved.</p>
-                    <a href="#" class="footer-link small">Terms and Conditions</a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#faqAccordion">
+                    <div class="card-body">
+                        Yes, we offer loans without co-signers for eligible applicants. Terms and conditions apply.
+                    </div>
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
 
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <div class="cta-section">
+        <h3>Invest in Your Future Today</h3>
+        <p>Explore your education loan options and apply now!</p>
+        <a href="#">Start Application</a>
+    </div>
+    {% endblock %}
 </body>
 </html>

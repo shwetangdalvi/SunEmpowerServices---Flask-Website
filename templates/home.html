@@ -175,10 +175,109 @@
             background-color: #cc0000;
             transform: translateY(-3px);
         }
+
+         /* Preloader styles */
+     /* Preloader styles */
+     .preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .preloader .door {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 50%;
+        background-color: #ff0000;
+        transition: width 2s ease-in-out;
+    }
+
+    .preloader .door.left {
+        left: 0;
+    }
+
+    .preloader .door.right {
+        right: 0;
+    }
+
+    .preloader .text {
+        position: absolute;
+        color: #fff;
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
+        z-index: 1000;
+    }
+
+    .preloader .text img.logo {
+        width: 120px;
+        height: auto;
+        margin-bottom: 15px;
+    }
+
+    @keyframes doorClose {
+        0% {
+            width: 0%;
+        }
+        100% {
+            width: 50%;
+        }
+    }
+
+    @keyframes doorOpen {
+        0% {
+            width: 50%;
+        }
+        100% {
+            width: 0%;
+        }
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeOut {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    {% extends "base.html" %}
+
+    {% block title %}Home - Sun Empower Solutions{% endblock %}
+
+    {% block content %}
+
+    <div class="preloader">
+        <div class="door left"></div>
+        <div class="door right"></div>
+        <div class="text">
+            <img src="{{ url_for('static', filename='images/impact-guild-logo.jpg') }}" alt="Impact Guild Advisors Logo" class="logo">
+            <br>Impact Guild Advisors Present <br> Sun Empower Solutions
+        </div>
+    </div>
+    
+    <!-- nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <a class="navbar-brand" href="#">Sun Empower Solutions</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -206,7 +305,7 @@
             </ul>
             <a href="{{ url_for('signin') }}" class="btn btn-signin ml-lg-3">Sign In</a>
         </div>
-    </nav>
+    </nav>< -->
 
     <div class="banner">
         <div class="banner-content text-white">
@@ -296,6 +395,26 @@
             </div>
         </div>
     </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const preloader = document.querySelector(".preloader");
+        const leftDoor = document.querySelector(".preloader .door.left");
+        const rightDoor = document.querySelector(".preloader .door.right");
+
+        // Add a click event to trigger the door opening animation
+        preloader.addEventListener("click", function () {
+            leftDoor.style.width = "0%";
+            rightDoor.style.width = "0%";
+
+            // Remove the preloader after the animation ends
+            setTimeout(() => {
+                preloader.style.display = "none";
+            }, 2000); // Match this time to the door animation duration
+        });
+    });
+    </script>
+    
+    {% endblock %}
 
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>

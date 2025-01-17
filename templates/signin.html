@@ -110,7 +110,12 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    {% extends "base.html" %}
+
+    {% block title %}Home - Sun Empower Solutions{% endblock %}
+
+    {% block content %}
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <a class="navbar-brand" href="#">Sun Empower Solutions</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -137,7 +142,7 @@
                 </li>
             </ul>
         </div>
-    </nav>
+    </nav> -->
 
     <div class="container d-flex justify-content-center">
         <div class="signin-container">
@@ -212,7 +217,7 @@
             </div>
         </div>
     </footer>
-
+    {% endblock %}
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
 </html>
